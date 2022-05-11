@@ -1,0 +1,12 @@
+database:
+  image: mysql
+  volumes:
+    - dbdata:/var/lib/mysql
+  environment:
+    - "MYSQL_DATABASE=client_schedule"
+    - "MYSQL_USER=sqlUser"
+    - "MYSQL_PASSWORD=Passw0rd!"
+    - "MYSQL_ROOT_PASSWORD=secret"
+  ports:
+    - "3306:3306"
+  restart: unless-stopped
