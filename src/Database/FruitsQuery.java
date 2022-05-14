@@ -13,4 +13,6 @@ public abstract class FruitsQuery {
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
     }
+
+//    public static int select(String)
 }
