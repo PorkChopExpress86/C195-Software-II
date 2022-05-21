@@ -1,12 +1,14 @@
-database:
-  image: mysql
-  volumes:
-    - dbdata:/var/lib/mysql
-  environment:
-    - "MYSQL_DATABASE=client_schedule"
-    - "MYSQL_USER=sqlUser"
-    - "MYSQL_PASSWORD=Passw0rd!"
-    - "MYSQL_ROOT_PASSWORD=secret"
-  ports:
-    - "3306:3306"
-  restart: unless-stopped
+version: '2'
+services:
+  cabin_db:
+    image: mysql:latest
+    volumes:
+      - "./.mysql-data/db:/var/lib/mysql"
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - "MYSQL_DATABASE=client_schedule"
+      - "MYSQL_USER=sqlUser"
+      - "MYSQL_PASSWORD=Passw0rd!"
+      - "MYSQL_ROOT_PASSWORD=secret"
