@@ -2,40 +2,55 @@ package Database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
-public abstract class JDBC {
-
+public class JDBC {
     private static final String protocol = "jdbc";
-    private static final String vendor = ":mysql:";
-    private static final String location = "//localhost:3306/";
-    private static final String databaseName = "client_schedule";
-    private static final String jdbcURL = protocol + vendor + location + databaseName + "?connectionTimeZone = SERVER";
-    private static final String driver = "com.mysql.cj.jdbc.Driver";
-    private static final String userName = "sqlUser";
+    private static final String vendorName = ":mysql:";
+    private static final String ipAddress = "//localhost:3306/";
+    private static final String dbName = "client_schedule";
+
+    private static final String jdbcURL = protocol + vendorName + ipAddress + dbName;
+
+    private static final String MYSQLJBCDriver = "com.mysql.cj.jdbc.Driver";
+
+    private static final String username = "sqlUser";
+
     private static final String password = "Passw0rd!";
 
-    public static Connection connection;
+    private static Connection conn = null;
 
-    public static void openConnection() {
+    /**
+     * Method that will start the connection to the database
+     *
+     * @return Connection object
+     */
+    public static Connection startConnection() {
         try {
-            // Locate the driver
-            Class.forName(driver);
+            Class.forName(MYSQLJBCDriver);
+            conn = DriverManager.getConnection(jdbcURL, username, password);
 
-            // Create connection with the driver and the parameters created above
-            connection = DriverManager.getConnection(jdbcURL, userName, password);
-            System.out.println("Connection open successful");
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Connection successful");
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return conn;
+    }
+
+    /**
+     * Close the connection method
+     */
+    public static void closeConnection() {
+        try {
+            conn.close();
+            System.out.println("Connection closed");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
     }
 
-    public static void closeConnection() {
-        try {
-            connection.close();
-            System.out.println("Connection closed successful");
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
+    public static Connection getConnection() {
+        return conn;
     }
 
 }
