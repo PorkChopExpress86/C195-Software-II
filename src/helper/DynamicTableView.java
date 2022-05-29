@@ -3,6 +3,7 @@ package helper;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+
 import Database.JDBC;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -108,4 +109,4 @@ public class DynamicTableView extends Application {
         stage.show();
     }
 }
-}
+
