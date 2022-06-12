@@ -30,5 +30,22 @@ public class DBContact {
         return contactList;
     }
 
-//    public static Contact returnContact
+    public static Contact getContactById(int contactId) throws SQLException {
+        try {
+            String sql = "SELECT Contact_ID, Contact_Name FROM contacts WHERE Contact_ID=?";
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setInt(1, contactId);
+            ps.execute();
+            ResultSet rs = ps.getResultSet();
+
+            rs.next();
+            int id = rs.getInt("Contact_ID");
+            String name = rs.getString("Contact_Name");
+            Contact contact = new Contact(id, name);
+            return contact;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

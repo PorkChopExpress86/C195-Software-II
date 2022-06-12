@@ -72,24 +72,24 @@
                 <Font size="36.0" />
             </font>
         </Label>
-        <Button fx:id="btnExit" layoutX="1103.0" layoutY="512.0" mnemonicParsing="false" text="Exit">
+        <Button fx:id="btnExit" layoutX="1103.0" layoutY="512.0" mnemonicParsing="false" onAction="#onActionExit" text="Exit">
             <font>
                 <Font size="14.0" />
             </font>
         </Button>
         <HBox alignment="CENTER" layoutX="112.0" layoutY="512.0" nodeOrientation="LEFT_TO_RIGHT" spacing="25.0">
             <children>
-                <Button fx:id="btnAdd" mnemonicParsing="false" text="Add">
+                <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#onActionAddAppointment" text="Add">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnEdit" mnemonicParsing="false" text="Edit">
+                <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#onActionEditAppointment" text="Edit">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnDelete" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" text="Delete" textAlignment="RIGHT">
+                <Button fx:id="btnDelete" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionDeleteAppointment" text="Delete" textAlignment="RIGHT">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -101,12 +101,12 @@
         </HBox>
         <HBox alignment="CENTER" layoutX="480.0" layoutY="512.0" prefHeight="30.0" prefWidth="200.0" spacing="25.0">
             <children>
-                <Button fx:id="btnCustomers" mnemonicParsing="false" text="Customers">
+                <Button fx:id="btnCustomers" mnemonicParsing="false" onAction="#onActionGoToCustomers" text="Customers">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnReports" mnemonicParsing="false" text="Reports">
+                <Button fx:id="btnReports" mnemonicParsing="false" onAction="#onActionGoToReports" text="Reports">
                     <font>
                         <Font size="14.0" />
                     </font>

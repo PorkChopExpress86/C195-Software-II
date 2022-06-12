@@ -6,6 +6,11 @@ public class Contact {
 
     private String contactName;
 
+    public Contact(int contactId, String contactName) {
+        this.contactId = contactId;
+        this.contactName = contactName;
+    }
+
     public int getContactId() {
         return contactId;
     }
@@ -22,8 +27,9 @@ public class Contact {
         this.contactName = contactName;
     }
 
-    public Contact(int contactId, String contactName) {
-        this.contactId = contactId;
-        this.contactName = contactName;
+    @Override
+    public String toString() {
+        return (contactName);
     }
+
 }

@@ -1,6 +1,7 @@
 package Model;
 
 import java.sql.Timestamp;
+import java.time.format.DateTimeFormatter;
 
 public class Appointment {
 
@@ -26,6 +27,22 @@ public class Appointment {
         this.customerId = customerId;
         this.userId = userId;
         this.contactId = contactId;
+    }
+
+    public String getStartDate() {
+        return this.startDateAndTime.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+
+    public String getStartTime() {
+        return this.startDateAndTime.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH:mm"));
+    }
+
+    public String getEndDate() {
+        return this.endDateAndTime.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+
+    public String getEndTime() {
+        return this.endDateAndTime.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH:mm"));
     }
 
     public int getAppointmentId() {

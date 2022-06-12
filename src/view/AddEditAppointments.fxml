@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="534.0" prefWidth="491.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AddEditAppointments">
+<AnchorPane prefHeight="534.0" prefWidth="491.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddEditAppointments">
    <children>
       <GridPane layoutX="28.0" layoutY="67.0" prefHeight="272.0" prefWidth="430.0">
         <columnConstraints>
-          <ColumnConstraints halignment="CENTER" maxWidth="261.0" minWidth="10.0" prefWidth="130.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.0" minWidth="10.0" prefWidth="385.0" />
+          <ColumnConstraints halignment="CENTER" maxWidth="261.0" minWidth="10.0" prefWidth="102.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.0" minWidth="10.0" prefWidth="328.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -31,7 +38,7 @@
             <Label layoutX="10.0" layoutY="20.0" text="Title" GridPane.rowIndex="1" />
             <Label layoutX="10.0" layoutY="56.0" text="Description" GridPane.rowIndex="2" />
             <Label layoutX="10.0" layoutY="92.0" text="Location" GridPane.rowIndex="3" />
-            <TextField fx:id="tbAppointmentId" editable="false" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
+            <TextField fx:id="tbAppointmentId" disable="true" editable="false" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
                <GridPane.margin>
                   <Insets left="20.0" right="20.0" />
                </GridPane.margin>
@@ -92,18 +99,18 @@
          <children>
             <Label text="Start Date" />
             <Label text="End Date" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tbStartDate" promptText="MM-DD-YYYY" GridPane.columnIndex="1" />
+            <TextField fx:id="tbEndDate" promptText="MM-DD-YYYY" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Start Time" GridPane.columnIndex="2" />
             <Label text="End Time" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="3" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField fx:id="tbStartTime" promptText="HH:MM" GridPane.columnIndex="3" />
+            <TextField fx:id="tbEndTime" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <HBox alignment="CENTER" layoutX="106.0" layoutY="428.0" prefHeight="73.0" prefWidth="274.0" spacing="50.0">
          <children>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" prefWidth="70.0" text="Confirm" textAlignment="CENTER" />
-            <Button mnemonicParsing="false" prefWidth="70.0" text="Back" textAlignment="CENTER" />
+            <Button fx:id="btnConfirm" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionConfirm" prefWidth="70.0" text="Confirm" textAlignment="CENTER" />
+            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#onActionBack" prefWidth="70.0" text="Back" textAlignment="CENTER" />
          </children>
       </HBox>
    </children>

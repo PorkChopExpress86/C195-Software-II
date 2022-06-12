@@ -58,9 +58,17 @@ public class Login implements Initializable {
         getTimeZoneLamdba myLambda = (ZoneId zoneId) -> zoneId.toString();
         regionCode.setText(myLambda.getTimeZone(ZoneId.systemDefault()));
 
-        ResourceBundle rb = ResourceBundle.getBundle("properties/Lang", Locale.getDefault());
+        System.out.println(Locale.getDefault().getLanguage());
+        ResourceBundle rb = ResourceBundle.getBundle("properties/lang", Locale.getDefault());
 
         if (Locale.getDefault().getLanguage().equals("fr")) {
+            lblTitle.setText(rb.getString("title"));
+            lblUsername.setText(rb.getString("username"));
+            lblPassword.setText(rb.getString("password"));
+            btnLogin.setText(rb.getString("login"));
+            btnCancel.setText(rb.getString("cancel"));
+        }
+        else if (Locale.getDefault().getLanguage().equals("en")) {
             lblTitle.setText(rb.getString("title"));
             lblUsername.setText(rb.getString("username"));
             lblPassword.setText(rb.getString("password"));
@@ -92,11 +100,10 @@ public class Login implements Initializable {
 
         boolean login = DBUser.userLogin(userName, password);
 
+        Logger.logAttempts(userName, password);
         if (!login) {
-            Logger.logAttempts(userName, password);
             User.incorrectCredentials();
         } else {
-            Logger.logAttempts(userName, password);
 
             // TODO add check to see if there is an appointment in the next 15 minutes, then display it as an alarm
             Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
