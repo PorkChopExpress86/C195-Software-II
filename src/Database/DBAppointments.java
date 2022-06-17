@@ -75,4 +75,31 @@ public class DBAppointments {
         return monthlyList;
 
     }
+
+    public static ObservableList<Appointment> getAppointmenstByCustomerId(int customerId) throws SQLException {
+        ObservableList<Appointment> list = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT Appointment_ID, Title, Description, Type, Start, End, Contact_ID from appointments WHERE Customer_ID = ?";
+
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+
+            ps.setInt(1, customerId);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+                int appointmentId = rs.getInt("Appointment_ID");
+                String title = rs.getString("Title");
+                String description = rs.getString("Description");
+                String type = rs.getString("Type");
+                Timestamp startTime = rs.getTimestamp("Start");
+                Timestamp endTime = rs.getTimestamp("End");
+                int contactId = rs.getInt("Contact_ID");
+                Appointment appointment = new Appointment(appointmentId, title, description, lo)
+
+
+            }
+
+        }
+    }
 }

@@ -198,6 +198,8 @@ public class AddEditAppointments implements Initializable {
             LocalDate localEndDate = LocalDate.parse(endDate);
             LocalTime localEndTime = LocalTime.parse(endTime);
 
+            ObservableList<Appointment> DBAppointment.
+
 
 
 
