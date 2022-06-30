@@ -1,6 +1,9 @@
 package Model;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
 public class Appointment {
@@ -29,16 +32,34 @@ public class Appointment {
         this.contactId = contactId;
     }
 
-    public String getStartDate() {
-        return this.startDateAndTime.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    public LocalDate getStartDate() {
+//        return this.startDateAndTime.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+//        Using a date picker now so the return needs to be a LocalDate type
+        return this.startDateAndTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//        return this.startDateAndTime.toLocalDateTime().toLocalDate();
     }
 
-    public String getStartTime() {
-        return this.startDateAndTime.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH:mm"));
+
+    public String getStartHour() {
+        return this.startDateAndTime.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH"));
     }
 
-    public String getEndDate() {
-        return this.endDateAndTime.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    public String getStartMinute() {
+        return this.startDateAndTime.toLocalDateTime().format(DateTimeFormatter.ofPattern("mm"));
+    }
+
+    public String getEndHour() {
+        return this.endDateAndTime.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH"));
+    }
+
+    public String getEndMintue() {
+        return this.endDateAndTime.toLocalDateTime().format(DateTimeFormatter.ofPattern("mm"));
+    }
+
+    public LocalDate getEndDate() {
+//        return this.endDateAndTime.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+//        Using a date picker now so the return needs to be a LocalDate type
+        return this.endDateAndTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
     public String getEndTime() {

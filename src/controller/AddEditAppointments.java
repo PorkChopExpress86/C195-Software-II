@@ -1,9 +1,11 @@
 package controller;
 
+import Database.DBAppointments;
 import Database.DBContact;
 import Model.Appointment;
 import Model.Contact;
 import helper.AlertError;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,10 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,8 +22,11 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 public class AddEditAppointments implements Initializable {
 
@@ -53,17 +55,26 @@ public class AddEditAppointments implements Initializable {
     @FXML
     private TextField tbUserId;
 
-    @FXML
-    private TextField tbStartDate;
+
 
     @FXML
-    private TextField tbStartTime;
+    private ComboBox<String> cbStartHour;
 
     @FXML
-    private TextField tbEndDate;
+    private ComboBox<String> cbStartMinute;
 
     @FXML
-    private TextField tbEndTime;
+    private DatePicker meetingDatePicker;
+
+    @FXML
+    private ComboBox<String> cbEndHour;
+
+    @FXML
+    private ComboBox<String> cbEndMinute;
+
+
+    ObservableList<String> appointmentHour = FXCollections.observableArrayList("00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23")
+    ObservableList<String> appointmentMinute = FXCollections.observableArrayList("00","15","30","45");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -88,6 +99,25 @@ public class AddEditAppointments implements Initializable {
         cbContact.setValue(contact);
 
         //Start and end date and times
+        meetingDatePicker.setValue(appointment.getStartDate());
+
+        // Start Hour
+        cbStartHour.setItems(appointmentHour);
+        cbStartHour.setValue(appointment.getStartHour());
+
+        //Start Minute
+        cbStartMinute.setItems(appointmentMinute);
+        cbStartMinute.setValue(appointment.getStartMinute());
+
+        //End Hour
+        cbEndHour.setItems(appointmentHour);
+        cbEndHour.setValue(appointment.getEndHour());
+
+        //End Minute
+        cbEndMinute.setItems(appointmentMinute);
+        cbEndMinute.setValue(appointment.getEndMinute());
+
+
         tbStartDate.setText(String.valueOf(appointment.getStartDate()));
         tbStartTime.setText(String.valueOf(appointment.getStartTime()));
 
@@ -193,12 +223,21 @@ public class AddEditAppointments implements Initializable {
             Timestamp startDateTime = Timestamp.valueOf((startDate + " " + startTime));
             Timestamp endDateTime = Timestamp.valueOf((endDate + " " + endTime));
 
+            //Convert to local time type
             LocalDate localStartDate = LocalDate.parse(startDate);
             LocalTime localStartTime = LocalTime.parse(startTime);
             LocalDate localEndDate = LocalDate.parse(endDate);
             LocalTime localEndTime = LocalTime.parse(endTime);
 
-            ObservableList<Appointment> DBAppointment.
+            //Convert to UTC time
+            ZoneId zoneId = ZoneId.of(TimeZone.getDefault().getID());
+
+            //ZonedDateTime
+            ZonedDateTime zdtStart = ZonedDateTime.of(localStartDate, localStartTime, zoneId);
+            ZonedDateTime zdtEnd = ZonedDateTime.of(localEndDate, localEndTime, zoneId);
+
+
+            ObservableList<Appointment> appointmentList =  DBAppointments.getAppointmentsByCustomerId(Integer.parseInt(tbCustomerId.getText()));
 
 
 
