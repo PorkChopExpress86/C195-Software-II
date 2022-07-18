@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="568.0" prefWidth="491.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddEditAppointments">
+<AnchorPane prefHeight="568.0" prefWidth="491.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditAppointments">
    <children>
       <GridPane layoutX="28.0" layoutY="67.0" prefHeight="272.0" prefWidth="430.0">
         <columnConstraints>

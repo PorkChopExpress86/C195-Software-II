@@ -1,9 +1,9 @@
 package Model;
 
+import helper.AlertError;
+
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 public class Appointment {
@@ -13,13 +13,13 @@ public class Appointment {
     private String description;
     private String location;
     private String type;
-    private Timestamp startDateAndTime;
-    private Timestamp endDateAndTime;
+    private LocalDateTime startDateAndTime;
+    private LocalDateTime endDateAndTime;
     private int customerId;
     private int userId;
     private int contactId;
 
-    public Appointment(int appointmentId, String title, String description, String location, String type, Timestamp startDateAndTime, Timestamp endDateAndTime, int customerId, int userId, int contactId) {
+    public Appointment(int appointmentId, String title, String description, String location, String type, LocalDateTime startDateAndTime, LocalDateTime endDateAndTime, int customerId, int userId, int contactId) {
         this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;
@@ -32,38 +32,38 @@ public class Appointment {
         this.contactId = contactId;
     }
 
+
+
     public LocalDate getStartDate() {
 //        return this.startDateAndTime.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 //        Using a date picker now so the return needs to be a LocalDate type
-        return this.startDateAndTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        return this.startDateAndTime.atZone(ZoneId.systemDefault()).toLocalDate();
 //        return this.startDateAndTime.toLocalDateTime().toLocalDate();
     }
 
-
     public String getStartHour() {
-        return this.startDateAndTime.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH"));
+        return this.startDateAndTime.format(DateTimeFormatter.ofPattern("HH"));
     }
 
     public String getStartMinute() {
-        return this.startDateAndTime.toLocalDateTime().format(DateTimeFormatter.ofPattern("mm"));
+        return this.startDateAndTime.format(DateTimeFormatter.ofPattern("mm"));
     }
 
     public String getEndHour() {
-        return this.endDateAndTime.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH"));
+        return this.endDateAndTime.format(DateTimeFormatter.ofPattern("HH"));
     }
 
-    public String getEndMintue() {
-        return this.endDateAndTime.toLocalDateTime().format(DateTimeFormatter.ofPattern("mm"));
+    public String getEndMinute() {
+        return this.endDateAndTime.format(DateTimeFormatter.ofPattern("mm"));
     }
 
     public LocalDate getEndDate() {
-//        return this.endDateAndTime.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 //        Using a date picker now so the return needs to be a LocalDate type
-        return this.endDateAndTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        return this.endDateAndTime.atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
     public String getEndTime() {
-        return this.endDateAndTime.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH:mm"));
+        return this.endDateAndTime.format(DateTimeFormatter.ofPattern("HH:mm"));
     }
 
     public int getAppointmentId() {
@@ -106,19 +106,19 @@ public class Appointment {
         this.type = type;
     }
 
-    public Timestamp getStartDateAndTime() {
+    public LocalDateTime getStartDateAndTime() {
         return startDateAndTime;
     }
 
-    public void setStartDateAndTime(Timestamp startDateAndTime) {
+    public void setStartDateAndTime(LocalDateTime startDateAndTime) {
         this.startDateAndTime = startDateAndTime;
     }
 
-    public Timestamp getEndDateAndTime() {
+    public LocalDateTime getEndDateAndTime() {
         return endDateAndTime;
     }
 
-    public void setEndDateAndTime(Timestamp endDateAndTime) {
+    public void setEndDateAndTime(LocalDateTime endDateAndTime) {
         this.endDateAndTime = endDateAndTime;
     }
 

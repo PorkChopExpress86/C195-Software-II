@@ -162,10 +162,10 @@ public class Appointments implements Initializable {
 
     private void EditTable(TableView<Appointment> tv, ActionEvent actionEvent) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/view/AddEditAppointments.fxml"));
+        loader.setLocation(getClass().getResource("/view/EditAppointments.fxml"));
         loader.load();
 
-        AddEditAppointments AddEditController = loader.getController();
+        EditAppointments AddEditController = loader.getController();
         AddEditController.loadAppointmentData(tv.getSelectionModel().getSelectedItem());
 
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
