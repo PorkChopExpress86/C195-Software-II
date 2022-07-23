@@ -2,8 +2,8 @@ package controller;
 
 import Database.DBAppointments;
 import Database.DBContact;
-import Model.Appointment;
-import Model.Contact;
+import model.Appointment;
+import model.Contact;
 import helper.AlertError;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -95,7 +95,6 @@ public class EditAppointments implements Initializable {
         tbCustomerId.setText(String.valueOf(appointment.getCustomerId()));
         tbUserId.setText(String.valueOf(appointment.getUserId()));
 
-
         //Get contact data
         Contact contact = DBContact.getContactById(appointment.getContactId());
         cbContact.setValue(contact);
@@ -164,18 +163,10 @@ public class EditAppointments implements Initializable {
 
                 //Convert to UTC time
                 ZoneId zoneId = ZoneId.of(TimeZone.getDefault().getID());
-
-                //ZonedDateTime
-//                ZonedDateTime zdtStart = ZonedDateTime.of(localStartDate, localStartTime, zoneId);
-//                ZonedDateTime zdtEnd = ZonedDateTime.of(localEndDate, localEndTime, zoneId);
-
-
                 ObservableList<Appointment> appointmentList = DBAppointments.getAppointmentsByCustomerId(Integer.parseInt(tbCustomerId.getText()));
-
-
             } else {
                 //Alert that a cell is empty
-                AlertError alert = new AlertError("Empty field", "Cannot update appointment with an empry field");
+                AlertError alert = new AlertError("Empty field", "Cannot update appointment with an empty field");
             }
 
 
