@@ -1,6 +1,6 @@
 package Database;
 
-import Model.Contact;
+import model.Contact;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

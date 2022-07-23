@@ -1,7 +1,7 @@
 package controller;
 
 import Database.DBUser;
-import Model.User;
+import model.User;
 import helper.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
