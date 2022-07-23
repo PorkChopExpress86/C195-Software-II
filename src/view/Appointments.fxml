@@ -65,6 +65,31 @@
                         </AnchorPane>
                     </content>
                 </Tab>
+            <Tab fx:id="tableViewAll" style="-fx-broder-color: black;" text="All">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="allTableView" prefHeight="367.0" prefWidth="1172.0" style="-fx-border-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <columns>
+                              <TableColumn fx:id="aAppointmentId" prefWidth="104.0" text="Appointment ID" />
+                              <TableColumn fx:id="aTitle" prefWidth="122.0" text="Title" />
+                              <TableColumn fx:id="aDescription" prefWidth="201.0" text="Description" />
+                              <TableColumn fx:id="aLocation" prefWidth="68.0" text="Location" />
+                              <TableColumn fx:id="aContact" prefWidth="130.0" text="Contact" />
+                              <TableColumn fx:id="aType" prefWidth="113.0" text="Type" />
+                              <TableColumn fx:id="aStart" prefWidth="140.0" text="Start Date &amp; Time" />
+                              <TableColumn fx:id="aEnd" prefWidth="140.0" text="End Date &amp; Time" />
+                              <TableColumn fx:id="aCustomerId" prefWidth="80.0" text="Customer ID" />
+                              <TableColumn fx:id="aUserId" prefWidth="70.0" resizable="false" text="User ID" />
+                           </columns>
+                           <opaqueInsets>
+                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                           </opaqueInsets>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
             </tabs>
         </TabPane>
         <Label layoutX="478.0" layoutY="8.0" text="Appointments">
