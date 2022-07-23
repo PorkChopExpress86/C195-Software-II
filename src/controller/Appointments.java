@@ -1,7 +1,7 @@
 package controller;
 
 import Database.DBAppointments;
-import Model.Appointment;
+import model.Appointment;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -75,7 +75,39 @@ public class Appointments implements Initializable {
     private TableView<Appointment> monthlyTableView;
 
     @FXML
+    private TableView<Appointment> allTableView;
+
+    @FXML
     private Tab tableViewWeekly;
+    @FXML
+    private TableColumn<Appointment, Integer> aAppointmentId;
+
+    @FXML
+    private TableColumn<Appointment, Integer> aContact;
+
+    @FXML
+    private TableColumn<Appointment, Integer> aCustomerId;
+
+    @FXML
+    private TableColumn<Appointment, String> aDescription;
+
+    @FXML
+    private TableColumn<Appointment, Timestamp> aEnd;
+
+    @FXML
+    private TableColumn<Appointment, String> aLocation;
+
+    @FXML
+    private TableColumn<Appointment, Timestamp> aStart;
+
+    @FXML
+    private TableColumn<Appointment, String> aTitle;
+
+    @FXML
+    private TableColumn<Appointment, String> aType;
+
+    @FXML
+    private TableColumn<Appointment, Integer> aUserId;
 
     @FXML
     private TableColumn<Appointment, Integer> wAppointmentId;
@@ -145,6 +177,19 @@ public class Appointments implements Initializable {
         mUserId.setCellValueFactory(new PropertyValueFactory<>("userId"));
         mContact.setCellValueFactory(new PropertyValueFactory<>("contactId"));
 
+//        All table
+        allTableView.setItems(DBAppointments.getAllAppointments());
+        aAppointmentId.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
+        aTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        aDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        aLocation.setCellValueFactory(new PropertyValueFactory<>("location"));
+        aType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        aStart.setCellValueFactory(new PropertyValueFactory<>("startDateAndTime"));
+        aEnd.setCellValueFactory(new PropertyValueFactory<>("endDateAndTime"));
+        aCustomerId.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        aUserId.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        aContact.setCellValueFactory(new PropertyValueFactory<>("contactId"));
+
     }
 
     public void onActionEditAppointment(ActionEvent actionEvent) throws IOException, SQLException {
@@ -157,6 +202,11 @@ public class Appointments implements Initializable {
         //Monthly
         else if (monthlyTableView.getSelectionModel().getSelectedItem() != null) {
             EditTable(monthlyTableView, actionEvent);
+        }
+
+        //All
+        else if (allTableView.getSelectionModel().getSelectedItem() != null) {
+            EditTable(allTableView, actionEvent);
         }
     }
 
