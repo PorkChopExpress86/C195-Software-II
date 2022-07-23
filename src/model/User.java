@@ -1,7 +1,6 @@
-package Model;
+package model;
 
 import helper.AlertError;
-import javafx.scene.control.Alert;
 
 import java.util.Locale;
 
